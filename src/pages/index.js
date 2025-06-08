@@ -4,7 +4,8 @@ export default function Home() {
   return (
     <Layout title="Cortex | Home">
       <section className="hero">
-        <h1>Welcome to Cortex</h1>
+        <h1>Welcome to Cortex Platform</h1>
+       <img src="/images/cortex-logo.webp" alt="Cortex Logo" className="logo" />
         <p>Your AI-powered knowledge and collaboration platform.</p>
         <video autoPlay muted loop className="full-video">
           <source src="/videos/cortex-demo.mp4" type="video/mp4" />
