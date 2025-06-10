@@ -1,22 +1,42 @@
 import Layout from '@/components/Layout';
 
+const projects = [
+  {
+    id: 1,
+    title: 'Smart Workspace',
+    summary: 'Creating seamless digital experiences using Cortex integrations.',
+    image: '/images/project-smart-workspace.png',
+    link: '/projects/smart-workspace',
+  },
+  {
+    id: 2,
+    title: 'Data Insights',
+    summary: 'Automating insights generation from complex enterprise data.',
+    image: '/images/project-data-insights.png',
+    link: '/projects/data-insights',
+  },
+];
+
 export default function Projects() {
   return (
     <Layout title="Cortex | Projects">
+      <section className="projects-hero">
+        <h1>Featured Projects</h1>
+        <p>Explore how Cortex drives innovation and delivers business impact.</p>
+      </section>
+
       <section className="content-section">
-        <h2>Featured Projects</h2>
         <div className="card-grid">
-          <div className="card">
-            <h3>Smart Workspace</h3>
-            <p>Creating seamless digital experiences using Cortex integrations.</p>
-          </div>
-          <div className="card">
-            <h3>Data Insights</h3>
-            <p>Automating insights generation from complex enterprise data.</p>
-          </div>
+          {projects.map(p => (
+            <div key={p.id} className="card">
+              <img src={p.image} alt={p.title} className="card-image" />
+              <h3>{p.title}</h3>
+              <p>{p.summary}</p>
+              <a href={p.link} className="card-cta">Learn More →</a>
+            </div>
+          ))}
         </div>
       </section>
     </Layout>
   );
 }
-
