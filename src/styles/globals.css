@@ -168,8 +168,8 @@ h1, h2, h3 {
 }
 .demo-components {
   display: grid;
-  gap: 4rem;
-  margin-top: 4rem;
+  gap: 6rem;
+  margin-top: 6rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   color: #0369a1;
 }
@@ -403,7 +403,7 @@ h1, h2, h3 {
   font-size: 1rem;
   margin-bottom: 1rem;
   color: #000;
-  background-color: #fff;
+  background-color: #016b59;
   transition: border-color 0.3s ease;
 }
 
@@ -414,7 +414,7 @@ h1, h2, h3 {
 }
 
 pre {
-  background: #f1f5f9;
+  background: #016b59;
   padding: 1rem;
   border-radius: 8px;
   white-space: pre-wrap;
@@ -423,7 +423,7 @@ pre {
 
 .tag {
   display: inline-block;
-  background-color: #e0f2fe;
+  background-color:#016b59 ;
   color: #0369a1;
   padding: 0.4rem 0.8rem;
   margin: 0.3rem;
@@ -435,7 +435,7 @@ pre {
   border-left: 4px solid var(--primary);
   padding-left: 0.75rem;
   margin-bottom: 1rem;
-  background: #f1f5f9;
+  background: #016b59;
   border-radius: 8px;
   color: #000;
 }
@@ -454,4 +454,5 @@ pre {
 .action-tracker li.done {
   text-decoration: line-through;
   color: #999;
+  background: #016b59;
 }
