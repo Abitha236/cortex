@@ -5,14 +5,14 @@ const projects = [
     id: 1,
     title: 'Smart Workspace',
     summary: 'Creating seamless digital experiences using Cortex integrations.',
-    image: '/images/project-smart-workspace.png',
+    image: '/images/work.webp',
     link: '/projects/smart-workspace',
   },
   {
     id: 2,
     title: 'Data Insights',
     summary: 'Automating insights generation from complex enterprise data.',
-    image: '/images/project-data-insights.png',
+    image: '/images/data.jfif',
     link: '/projects/data-insights',
   },
 ];

@@ -1,8 +1,8 @@
 import Layout from '@/components/Layout';
 
 const team = [
-  { name: 'Alice Johnson', role: 'CEO & Co‑Founder', image: '/images/team/alice.jpg' },
-  { name: 'Bob Lee', role: 'CTO & Co‑Founder', image: '/images/team/bob.jpg' },
+  { name: 'Alice Johnson', role: 'CEO & Co‑Founder', image: '/images/alice.webp' },
+  { name: 'Bob Lee', role: 'CTO & Co‑Founder', image: '/images/bob.webp' },
 ];
 
 export default function About() {

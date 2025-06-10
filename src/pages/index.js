@@ -14,9 +14,9 @@ export default function Home() {
             <button className="hero-cta-outline">Learn More</button>
           </div>
           <div className="hero-logos">
-            <img src="/logos/companyA.svg" alt="Company A" />
-            <img src="/logos/companyB.svg" alt="Company B" />
-            <img src="/logos/companyC.svg" alt="Company C" />
+            <img src="/images/CompanyA.jfif" alt="Company A" />
+            <img src="/images/CompanyB.avif" alt="Company B" />
+            <img src="/images/CompanyC.webp" alt="Company C" />
           </div>
         </div>
         <img src="/images/cortex-logo.webp" alt="Cortex Logo" className="logo" />
@@ -40,12 +40,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="demo-section">
-        <h2>See Cortex in Action</h2>
-        <video controls loop className="demo-video">
-          <source src="/videos/cortex-feature-demo.mp4" type="video/mp4" />
-        </video>
-      </section>
+      
 
       <section className="testimonials">
         <blockquote>
