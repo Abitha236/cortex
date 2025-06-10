@@ -11,7 +11,7 @@ export default function Features() {
       <section className="features-hero">
         <h1>Boost Team Productivity with Cortex AI</h1>
         <p>Turn meetings into action plans, tag insights effortlessly, search contextually, and track tasks—all with AI-enhanced precision.</p>
-        <button className="primary-cta">Get Started Now</button>
+        
       </section>
 
       <section className="content-section">

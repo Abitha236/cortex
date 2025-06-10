@@ -6,14 +6,14 @@ const projects = [
     title: 'Smart Workspace',
     summary: 'Creating seamless digital experiences using Cortex integrations.',
     image: '/images/work.webp',
-    link: '/projects/smart-workspace',
+    
   },
   {
     id: 2,
     title: 'Data Insights',
     summary: 'Automating insights generation from complex enterprise data.',
     image: '/images/data.jfif',
-    link: '/projects/data-insights',
+   
   },
 ];
 
@@ -32,7 +32,7 @@ export default function Projects() {
               <img src={p.image} alt={p.title} className="card-image" />
               <h3>{p.title}</h3>
               <p>{p.summary}</p>
-              <a href={p.link} className="card-cta">Learn More →</a>
+             
             </div>
           ))}
         </div>

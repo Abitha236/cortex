@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
-  --primary: #3b82f6;
-  --primary-dark: #2563eb;
+  --primary: #733bf6;
+  --primary-dark: #5716c0;
   --bg-light: #f9fafb;
   --text-base: #111827;
   --muted: #4b5563;
@@ -168,9 +168,10 @@ h1, h2, h3 {
 }
 .demo-components {
   display: grid;
-  gap: 2rem;
-  margin-top: 2rem;
+  gap: 4rem;
+  margin-top: 4rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  color: #0369a1;
 }
 
 .faq-section {

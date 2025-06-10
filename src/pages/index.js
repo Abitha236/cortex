@@ -9,22 +9,21 @@ export default function Home() {
           <p className="hero-subtitle">
             Collaborate, learn, and innovate—powered by AI tools built for teams.
           </p>
-          <div className="hero-cta-wrap">
-            <button className="hero-cta">Get Started Free</button>
-            <button className="hero-cta-outline">Learn More</button>
-          </div>
+         <h2>Sponsors</h2>
           <div className="hero-logos">
             <img src="/images/CompanyA.jfif" alt="Company A" />
             <img src="/images/CompanyB.avif" alt="Company B" />
             <img src="/images/CompanyC.webp" alt="Company C" />
           </div>
+          <br> 
+          </br>
         </div>
         <img src="/images/cortex-logo.webp" alt="Cortex Logo" className="logo" />
         <video autoPlay muted loop className="full-video">
           <source src="/videos/cortex-demo.mp4" type="video/mp4" />
         </video>
       </section>
-
+<center>
       <section className="features-overview">
         <div className="feature-card">
           <h3>Knowledge Base</h3>
@@ -47,17 +46,9 @@ export default function Home() {
           “Cortex helped our team cut onboarding time by 50%.”
           <footer>– Product Lead at XYZ Corp.</footer>
         </blockquote>
-        <div className="stats-grid">
-          <div className="stat">
-            <span>+45%</span>
-            <p>Average time saved</p>
-          </div>
-          <div className="stat">
-            <span>4.8 / 5 ⭐</span>
-            <p>User satisfaction</p>
-          </div>
-        </div>
+       
       </section>
+      </center>
     </Layout>
   );
 }
