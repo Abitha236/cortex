@@ -27,7 +27,6 @@ const SemanticSearch = () => {
         setStatus("Results ready");
         setLoading(false);
       }, 1500);
-
       return () => clearTimeout(timer);
     } else {
       setResults([]);

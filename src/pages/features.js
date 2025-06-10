@@ -1,4 +1,8 @@
 import Layout from '@/components/Layout';
+import MeetingSummaryAI from "@/components/MeetingSummaryAI";
+import TagNotesAI from "@/components/TagNotesAI";
+import SemanticSearch from "@/components/SemanticSearch";
+import ActionItemTracker from "@/components/ActionItemTracker";
 
 export default function Features() {
   return (
@@ -12,6 +16,12 @@ export default function Features() {
           <li>Context-aware search</li>
           <li>Multi-device synchronization</li>
         </ul>
+        <main>
+          <MeetingSummaryAI />
+      <TagNotesAI />
+      <SemanticSearch />
+      <ActionItemTracker />
+        </main>
       </section>
     </Layout>
   );

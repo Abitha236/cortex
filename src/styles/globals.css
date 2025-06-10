@@ -128,13 +128,14 @@ body {
   border-radius: 16px;
   padding: 1.5rem;
   margin: 1.5rem 0;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
+  color: #000; /* Ensure text is black */
 }
 
 .ai-box:hover {
   transform: scale(1.01);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 .ai-box h2 {
@@ -152,12 +153,22 @@ body {
   font-size: 1rem;
   margin-bottom: 1rem;
   transition: border-color 0.3s ease;
+  color: #000;
+  background-color: #fff;
 }
 
 .ai-box input:focus,
 .ai-box textarea:focus {
   border-color: #3b82f6;
   outline: none;
+}
+
+pre {
+  background: #f1f5f9;
+  padding: 0.75rem;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  color: #000;
 }
 
 .tag {
@@ -176,6 +187,7 @@ body {
   margin-bottom: 1rem;
   background: #f1f5f9;
   border-radius: 8px;
+  color: #000;
 }
 
 .action-tracker label {
@@ -192,12 +204,4 @@ body {
 .action-tracker li.done {
   text-decoration: line-through;
   color: #999;
-}
-
-pre {
-  background: #f1f5f9;
-  padding: 0.75rem;
-  border-radius: 8px;
-  white-space: pre-wrap;
-  color: #1e293b;
 }

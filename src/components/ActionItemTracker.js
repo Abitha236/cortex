@@ -14,9 +14,7 @@ const ActionItemTracker = () => {
   const [completedTasks, setCompletedTasks] = useState([]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setStatus("Tracking tasks");
-    }, 500);
+    setTimeout(() => setStatus("Tracking tasks"), 500);
   }, []);
 
   useEffect(() => {
@@ -26,12 +24,6 @@ const ActionItemTracker = () => {
     setLastUpdate(new Date().toLocaleTimeString());
     setCompletedTasks(completed.map(i => i.task));
   }, [items]);
-
-  const toggleStatus = (index) => {
-    const updated = [...items];
-    updated[index].done = !updated[index].done;
-    setItems(updated);
-  };
 
   return (
     <div className="ai-box action-tracker">
@@ -43,7 +35,11 @@ const ActionItemTracker = () => {
         {items.map((item, i) => (
           <li key={i} className={item.done ? "done" : ""}>
             <label>
-              <input type="checkbox" checked={item.done} onChange={() => toggleStatus(i)} />
+              <input type="checkbox" checked={item.done} onChange={() => {
+                const updated = [...items];
+                updated[i].done = !updated[i].done;
+                setItems(updated);
+              }} />
               {item.task} – <em>{item.assignedTo}</em>
             </label>
           </li>
@@ -55,3 +51,6 @@ const ActionItemTracker = () => {
 };
 
 export default ActionItemTracker;
+
+
+

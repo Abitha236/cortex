@@ -4,12 +4,13 @@ const MeetingSummaryAI = () => {
   const [transcript, setTranscript] = useState("");
   const [summary, setSummary] = useState("");
   const [wordCount, setWordCount] = useState(0);
+  const [lastSummarized, setLastSummarized] = useState("");
 
- 
   useEffect(() => {
     if (transcript.length > 30) {
       const timer = setTimeout(() => {
         setSummary("Summary: Key topics were project deadlines, team roles, and upcoming releases.");
+        setLastSummarized(new Date().toLocaleTimeString());
       }, 2000);
       return () => clearTimeout(timer);
     } else {
@@ -33,6 +34,7 @@ const MeetingSummaryAI = () => {
       />
       <p><strong>Word Count:</strong> {wordCount}</p>
       <pre>{summary}</pre>
+      {lastSummarized && <p><em>Last summarized at: {lastSummarized}</em></p>}
     </div>
   );
 };
