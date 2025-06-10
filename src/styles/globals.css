@@ -17,6 +17,30 @@ body {
   margin: 0;
   line-height: 1.6;
 }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f2937;
+  padding: 1rem 2rem;
+  color: white;
+}
+
+.navbar nav a {
+  margin: 0 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar nav a:hover {
+  color: #3b82f6;
+}
+
+.logo {
+  height: 40px;
+}
+
 h1, h2, h3 {
   color: var(--text-base);
   margin: 0 0 0.75rem;
