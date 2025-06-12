@@ -19,7 +19,7 @@ export const callOpenAI = async (prompt) => {
 
     return response.data.choices[0].message.content;
   } catch (error) {
-    console.error("OpenAI Error:", error);
-    return "AI response failed.";
+    console.error("OpenAI API error:", error);
+    return "Failed to get response from AI.";
   }
 };
