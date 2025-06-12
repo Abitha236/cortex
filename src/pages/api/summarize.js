@@ -1,35 +1,42 @@
-export const config = { api: { bodyParser: false } };
-
+// pages/api/summarize.js
 import fs from 'fs';
-import * as pdfjs from 'pdfjs-dist/legacy/build/pdf';
 import formidable from 'formidable';
+import * as pdfjs from 'pdfjs-dist/legacy/build/pdf';
 import axios from 'axios';
+
+// Disable Next.js default body parsing so formidable can parse multipart/form-data
+export const config = { api: { bodyParser: false } };
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
-  const form = formidable({ maxFileSize: 50 * 1024 * 1024 });
-
   let fields, files;
   try {
     ({ fields, files } = await new Promise((resolve, reject) => {
-      form.parse(req, (err, f, fi) => err ? reject(err) : resolve({ fields: f, files: fi }));
+      const form = new formidable.IncomingForm();
+      form.parse(req, (err, f, fi) =>
+        err ? reject(err) : resolve({ fields: f, files: fi })
+      );
     }));
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    console.error('Form.parse error:', err);
+    return res.status(500).json({ error: 'Failed to parse input' });
   }
 
-  let text = fields.text?.toString();
-  if (files?.file) {
-    const file = files.file;
-    const arrayBuffer = await fs.promises.readFile(file.filepath);
-    const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
-    const pages = await Promise.all(
+  console.log('fields:', fields, 'files:', files);
+
+  let text = fields.text?.toString() || '';
+  if (files.file) {
+    const buffer = await fs.promises.readFile(files.file.filepath);
+    const pdf = await pdfjs.getDocument({ data: buffer }).promise;
+    const pagesText = await Promise.all(
       Array.from({ length: pdf.numPages }, (_, i) =>
-        pdf.getPage(i + 1).then(p => p.getTextContent())
+        pdf.getPage(i + 1)
+          .then(p => p.getTextContent())
+          .then(tc => tc.items.map(it => it.str).join(' '))
       )
     );
-    text = pages.map(p => p.items.map(i => i.str).join(' ')).join('\n');
+    text = pagesText.join('\n');
   }
 
   if (!text) return res.status(400).json({ error: 'No text or file provided.' });
@@ -39,18 +46,13 @@ export default async function handler(req, res) {
       'https://api.openai.com/v1/chat/completions',
       {
         model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: `Summarize:\n\n${text}` }]
+        messages: [{ role: 'user', content: `Summarize:\n\n${text}` }],
       },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-          'Content-Type': 'application/json'
-        }
-      }
+      { headers: { Authorization: `Bearer ${process.env.OPENAI_API_KEY}` } }
     );
-    res.status(200).json({ summary: aiRes.data.choices[0].message.content });
+    return res.status(200).json({ summary: aiRes.data.choices[0].message.content });
   } catch (e) {
-    console.error(e);
-    res.status(500).json({ error: 'Summarization failed.' });
+    console.error('OpenAI error:', e.response?.data || e);
+    return res.status(500).json({ error: 'Summarization failed.' });
   }
 }
