@@ -1,34 +1,33 @@
-// components/AIMeetingSummarizer.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
 export default function AIMeetingSummarizer() {
-  const [file, setFile] = useState(null);
   const [text, setText] = useState('');
   const [summary, setSummary] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setSummary('');
     setError('');
 
+    if (!text.trim()) {
+      setError('Please enter some text to summarize.');
+      setLoading(false);
+      return;
+    }
+
     try {
-      const formData = new FormData();
-      if (file) formData.append('file', file);
-      else formData.append('text', text);
-
-      console.log('Submitting:', file ? 'file' : 'text');
-      const res = await axios.post('/api/summarize', formData);
-      console.log('Response:', res.status, res.data);
-
-      if (res.data.summary) setSummary(res.data.summary);
-      else setError(res.data.error || 'No summary returned.');
+      const res = await axios.post('/api/summarize', { text });
+      console.log('Backend response:', res.status, res.data);
+      res.data.summary
+        ? setSummary(res.data.summary)
+        : setError(res.data.error || 'No summary returned.');
     } catch (err) {
-      console.error('Summarization error:', err.response?.data || err);
-      setError('Summarization error — check console.');
+      console.error('Summarization error:', err.response?.data || err.message);
+      setError('Summarization failed — check console.');
     } finally {
       setLoading(false);
     }
@@ -38,27 +37,19 @@ export default function AIMeetingSummarizer() {
     <form onSubmit={handleSubmit}>
       <textarea
         value={text}
-        onChange={e => {
-          setFile(null);
-          setText(e.target.value);
-        }}
+        onChange={(e) => setText(e.target.value)}
         placeholder="Paste text here..."
-      />
-      <input
-        type="file"
-        accept=".pdf,.txt"
-        onChange={e => {
-          setText('');
-          setFile(e.target.files ? e.target.files[0] : null);
-        }}
+        rows={6}
+        style={{ width: '100%', marginBottom: 10 }}
       />
       <button type="submit" disabled={loading}>
         {loading ? 'Summarizing…' : 'Summarize'}
       </button>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
+
       {summary && (
-        <div>
+        <div style={{ marginTop: 20 }}>
           <h2>Summary:</h2>
           <p>{summary}</p>
         </div>
