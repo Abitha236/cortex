@@ -3,6 +3,7 @@ import MeetingSummaryAI from "@/components/MeetingSummaryAI";
 import TagNotesAI from "@/components/TagNotesAI";
 import SemanticSearch from "@/components/SemanticSearch";
 import ActionItemTracker from "@/components/ActionItemTracker";
+import Link from 'next/link';
 
 export default function Features() {
   return (
@@ -16,6 +17,7 @@ export default function Features() {
 
       <section className="content-section">
         <h2>What You Can Do</h2>
+        <h2>Live Demo</h2>
         <div className="feature-grid">
           <div className="feature-block">
             <h3>Meeting Summaries</h3>
@@ -46,8 +48,14 @@ export default function Features() {
           <ActionItemTracker />
         </div>
       </section>
-
-     
+<center>
+     <h1>Experience our free trial of Summarizer</h1>
+     <Link href="/summarize" target="_blank" rel="noopener noreferrer">
+               <button className="px-8 py-4 rounded-xl text-white text-lg font-bold bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 shadow-lg backdrop-blur-lg border border-white/20 hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-2xl">
+                 📝 Summarize & Tag Text
+               </button>
+             </Link>
+             </center>S
       <section className="testimonial-section">
         <blockquote>
           “Cortex transformed how our team captures insights. We save 3 hours of meeting time each week!”
