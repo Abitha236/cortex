@@ -1,3 +1,4 @@
+// components/AIMeetingSummarizer.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -10,11 +11,11 @@ export default function AIMeetingSummarizer() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setSummary('');
     setError('');
+    setSummary('');
 
     if (!text.trim()) {
-      setError('Please enter some text to summarize.');
+      setError('Please enter text to summarize');
       setLoading(false);
       return;
     }
@@ -22,12 +23,11 @@ export default function AIMeetingSummarizer() {
     try {
       const res = await axios.post('/api/summarize', { text });
       console.log('Backend response:', res.status, res.data);
-      res.data.summary
-        ? setSummary(res.data.summary)
-        : setError(res.data.error || 'No summary returned.');
+      if (res.data.summary) setSummary(res.data.summary);
+      else setError(res.data.error || 'No summary was returned.');
     } catch (err) {
-      console.error('Summarization error:', err.response?.data || err.message);
-      setError('Summarization failed — check console.');
+      console.error('Error:', err.response?.data || err);
+      setError('Summarization failed — check console');
     } finally {
       setLoading(false);
     }
@@ -47,7 +47,6 @@ export default function AIMeetingSummarizer() {
       </button>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
-
       {summary && (
         <div style={{ marginTop: 20 }}>
           <h2>Summary:</h2>
