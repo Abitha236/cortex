@@ -19,7 +19,7 @@ export default async function handler(req, res) {
         headers: {
           'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
           'Content-Type': 'application/json',
-          'HTTP-Referer': 'http://localhost:3000',
+          'HTTP-Referer': req.headers.referer || 'https://cortex-b6tk.vercel.app',
           'X-Title': 'DonAid-AI',
         },
       }
