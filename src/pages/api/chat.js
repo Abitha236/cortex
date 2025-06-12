@@ -21,7 +21,7 @@ export default async function handler(req, res) {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
+          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
           
           "X-Title": "Cortex AI Workspace",
         },
