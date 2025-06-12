@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import AIMeetingSummarizer from '@/components/AIMeetingSummarizer';
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
           <p className="hero-subtitle">
             Collaborate, learn, and innovate—powered by AI tools built for teams.
           </p>
+          <main><AIMeetingSummarizer /></main>
          <h2>Sponsors</h2>
           <div className="hero-logos">
             <img src="/images/CompanyA.jfif" alt="Company A" />
