@@ -22,7 +22,7 @@ export default async function handler(req, res) {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
-          "HTTP-Referer": 'https://cortex-b6tk.vercel.app',
+          
           "X-Title": "Cortex AI Workspace",
         },
       }
