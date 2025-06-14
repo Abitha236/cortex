@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { saveSummarizeData } from '../utils/firestoreUtils'; // ✅ import function
 
 export default function SummarizePage() {
   const [text, setText] = useState('');
@@ -15,7 +16,12 @@ export default function SummarizePage() {
         body: JSON.stringify({ prompt: `Summarize this:\n${text}` }),
       });
       const data = await res.json();
-      setSummary(data.summary || '⚠️ No summary received');
+      const result = data.summary || '⚠️ No summary received';
+      setSummary(result);
+
+      // ✅ Save to Firestore
+      await saveSummarizeData(text, result);
+
     } catch (err) {
       setSummary('❌ Failed to fetch summary');
     }

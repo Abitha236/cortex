@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { saveChatData } from "../utils/firestoreUtils";
 
 export default function CortexChat() {
   const [messages, setMessages] = useState([]);
@@ -23,17 +24,17 @@ export default function CortexChat() {
       });
 
       const data = await res.json();
-      const aiMessage = {
-        role: "assistant",
-        content: data.choices?.[0]?.message?.content || "No reply.",
-      };
+      const aiResponse = data.choices?.[0]?.message?.content || "No reply.";
+      const aiMessage = { role: "assistant", content: aiResponse };
 
       setMessages([...newHistory, aiMessage]);
+
+      // ✅ Save chat input/output to Firestore
+      await saveChatData(input, aiResponse);
+
     } catch (error) {
-      setMessages([
-        ...newHistory,
-        { role: "assistant", content: "❌ Error: Failed to fetch response." },
-      ]);
+      const errorMsg = "❌ Error: Failed to fetch response.";
+      setMessages([...newHistory, { role: "assistant", content: errorMsg }]);
     }
 
     setLoading(false);
@@ -87,5 +88,3 @@ export default function CortexChat() {
     </div>
   );
 }
-
-
